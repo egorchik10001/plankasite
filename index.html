@@ -143,37 +143,6 @@ section { padding: 96px 48px; }
 .stat-num { font-family: "Cormorant Garamond", serif; font-size: clamp(34px,4vw,54px); font-weight: 700; color: var(--purple2); line-height: 1; }
 .stat-label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 8px; font-weight: 500; }
 
-/* CALCULATOR */
-.rc-tab { background: none; border: none; color: var(--muted); font-family: "Manrope", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 9px 24px; cursor: pointer; transition: all .2s; }
-.rc-tab.active { background: var(--purple); color: #fff; box-shadow: 0 4px 16px rgba(123,47,190,.35); }
-.rc-panel { display: none; }
-.rc-panel.rc-active { display: block; }
-.rc-table { width: 100%; border-collapse: collapse; }
-.rc-table tr { border-bottom: 1px solid var(--border); }
-.rc-table tr:last-child { border-bottom: none; }
-.rc-table td { padding: 12px 16px; vertical-align: middle; }
-.rc-place { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; background: var(--dark3); color: var(--muted); flex-shrink: 0; }
-.rc-place.p1 { background: rgba(201,168,76,.2); color: #E2C06A; }
-.rc-place.p2 { background: rgba(180,180,180,.15); color: #C0BEB8; }
-.rc-place.p3 { background: rgba(200,130,100,.15); color: #D4907A; }
-.rc-bar-track { height: 4px; background: var(--dark3); border-radius: 2px; overflow-x: hidden; overflow-y: auto; width: 100px; }
-.rc-bar-fill { height: 100%; border-radius: 2px; background: var(--muted); opacity: .35; }
-.rc-bar-fill.rc-you { background: var(--purple2); opacity: 1; }
-.rc-rev { text-align: right; font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text); transition: filter .4s, opacity .4s; }
-.rc-rev.hidden { filter: blur(7px); opacity: .4; user-select: none; pointer-events: none; }
-.rc-you-row td { background: rgba(123,47,190,.1); }
-.rc-you-row .rc-rev { filter: none !important; opacity: 1 !important; }
-.rc-badge { font-size: 10px; background: rgba(123,47,190,.18); color: var(--purple2); padding: 2px 8px; border-radius: 20px; margin-left: 6px; font-weight: 600; border: 1px solid rgba(155,81,224,.3); }
-.rc-res-card { border: 1px solid var(--border); padding: 24px 20px; background: var(--dark4); }
-.rc-res-card.rc-win { border-color: rgba(155,81,224,.5); background: rgba(123,47,190,.1); }
-.rc-res-year { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
-.rc-res-place { font-family: "Cormorant Garamond", serif; font-size: 42px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 4px; }
-.rc-res-place.rc-win { color: var(--purple2); }
-.rc-res-sub { font-size: 14px; color: var(--muted); font-weight: 300; }
-.rc-res-total { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
-.rc-res-note { font-size: 12px; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--border); font-weight: 500; }
-.rc-res-note.rc-win { color: var(--purple2); }
-
 /* CTA BANNER */
 .cta-banner { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--dark3), rgba(90,31,150,.2)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 70px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .cta-banner::after { content: "ПЛАНКА"; position: absolute; right: -24px; bottom: -70px; color: rgba(255,255,255,.025); font-family: "Cormorant Garamond", serif; font-size: 170px; font-weight: 700; letter-spacing: .04em; pointer-events: none; }
@@ -207,13 +176,16 @@ section { padding: 96px 48px; }
 /* RATING */
 #rating { background: var(--dark); text-align: center; }
 .rating-desc { max-width: 560px; margin: 16px auto 48px; font-size: 14.5px; color: var(--muted); line-height: 1.75; font-weight: 300; }
-.rating-years { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.rating-card { border: 1px solid var(--border); padding: 36px 44px; min-width: 190px; text-decoration: none; transition: all .3s; position: relative; overflow-x: hidden; overflow-y: auto; display: inline-block; }
+.rating-years { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; max-width: 1000px; margin-inline: auto; }
+.rating-card { border: 1px solid var(--border); padding: 36px clamp(16px, 3vw, 44px); text-decoration: none; transition: all .3s; position: relative; overflow-x: hidden; overflow-y: auto; display: block; }
 .rating-card::before { content: ""; position: absolute; inset: 0; background: rgba(123,47,190,.08); opacity: 0; transition: opacity .3s; }
 .rating-card:hover::before { opacity: 1; }
 .rating-card:hover { border-color: rgba(155,81,224,.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
 .rating-year { font-family: "Cormorant Garamond", serif; font-size: 52px; font-weight: 700; color: var(--purple2); line-height: 1; display: block; }
 .rating-label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: block; }
+@media(max-width: 900px) {
+  .rating-years { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+}
 
 /* PARTNERS */
 #partners { background: var(--dark2); }
@@ -322,7 +294,6 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
   .registration-actions a, .company-registration { width: 100%; max-width: 360px; padding-left: 18px; padding-right: 18px; }
   .contacts-actions .btn-primary, .contacts-actions .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
   .back-top { bottom: 70px; right: 16px; width: 42px; height: 42px; }
-  .rc-bar-track { width: 60px; }
 }
 @media(max-width: 640px) {
   .tasks-grid, .news-grid { grid-template-columns: 1fr; }
@@ -334,7 +305,7 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
   .hero-ball { width: 220px; height: 225px; }
   .hero-title { font-size: 36px; }
   .hero-founded { font-size: 9px; }
-  .rating-years { flex-direction: column; align-items: center; }
+  .rating-years { grid-template-columns: 1fr; max-width: 320px; }
   .hero-btns { flex-direction: column; align-items: center; }
   .btn-primary, .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
   .partners-grid { grid-template-columns: 1fr; }
@@ -585,34 +556,6 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
   </div>
 </section>
 
-<!-- CALCULATOR -->
-<section id="calculator" style="background:var(--dark3)">
-  <div style="max-width:680px;margin:0 auto">
-    <div class="sec-tag reveal" style="justify-content:center">Рейтинг участников</div>
-    <h2 class="sec-title reveal" style="text-align:center;margin-bottom:12px">Какое место <em>заняли бы вы?</em></h2>
-    <p class="reveal" style="text-align:center;font-size:14px;color:var(--muted);margin-bottom:32px;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto">Введите выручку вашей компании — и мы покажем ваше место среди участников рейтинга. Суммы других компаний скрыты до ввода.</p>
-    <div class="reveal" style="background:var(--dark4);border:1px solid var(--border2);padding:24px 28px;margin-bottom:0">
-      <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--purple2);font-weight:600;margin-bottom:14px">Введите вашу выручку в рублях</div>
-      <input id="rc-input" type="number" min="0" placeholder="например: 25 000 000" oninput="rcUpdate()" style="display:block;width:100%;background:var(--dark);border:1px solid var(--border);border-bottom:2px solid var(--purple2);color:var(--text);font-family:'Manrope',sans-serif;font-size:22px;font-weight:300;padding:18px 20px;outline:none;transition:all .25s" onfocus="this.style.borderColor='rgba(155,81,224,.5)';this.style.background='rgba(123,47,190,.05)'" onblur="this.style.borderColor='rgba(123,47,190,.2)';this.style.background='var(--dark)'"/>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
-        <div id="rc-status" style="font-size:12px;color:var(--muted);transition:all .3s">Данные других участников скрыты до ввода</div>
-        <button onclick="rcClear()" style="background:none;border:none;color:var(--muted);font-family:'Manrope',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;transition:color .2s" onmouseover="this.style.color='var(--purple2)'" onmouseout="this.style.color='var(--muted)'">Сбросить</button>
-      </div>
-    </div>
-    <div class="reveal" style="display:flex;gap:4px;background:var(--dark4);padding:4px;width:fit-content;border:1px solid var(--border);border-top:none">
-      <button class="rc-tab active" onclick="rcShowYear('2022',this)">2022</button>
-      <button class="rc-tab" onclick="rcShowYear('2023',this)">2023</button>
-      <button class="rc-tab" onclick="rcShowYear('2024',this)">2024</button>
-    </div>
-    <div style="background:var(--dark4);border:1px solid var(--border);border-top:none;margin-bottom:24px">
-      <div id="rc-panel-2022" class="rc-panel rc-active"></div>
-      <div id="rc-panel-2023" class="rc-panel"></div>
-      <div id="rc-panel-2024" class="rc-panel"></div>
-    </div>
-    <div id="rc-cards" style="display:none;grid-template-columns:repeat(3,1fr);gap:12px"></div>
-  </div>
-</section>
-
 <div class="divider"></div>
 
 <!-- RATING -->
@@ -621,11 +564,12 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
     <div class="sec-tag" style="justify-content:center">Ежегодный конкурс</div>
     <h2 class="sec-title" style="text-align:center">Рейтинг<br><em>лучших компаний</em></h2>
   </div>
-  <p class="rating-desc reveal">Архив результатов 2022–2024 годов. Независимый рейтинг по выручке показывает развитие рынка бухгалтерского консалтинга Новосибирской области.</p>
+  <p class="rating-desc reveal">Архив результатов 2022–2025 годов. Независимый рейтинг по выручке показывает развитие рынка бухгалтерского консалтинга Новосибирской области.</p>
   <div class="rating-years reveal">
     <a href="https://planka.business/rating_2022" target="_blank" rel="noopener" class="rating-card"><span class="rating-year">2022</span><span class="rating-label">Первый конкурс</span></a>
     <a href="https://planka.business/rating_2023" target="_blank" rel="noopener" class="rating-card"><span class="rating-year">2023</span><span class="rating-label">Итоги опубликованы</span></a>
     <a href="https://planka.business/rating_2024" target="_blank" rel="noopener" class="rating-card"><span class="rating-year">2024</span><span class="rating-label">Итоги опубликованы</span></a>
+    <a href="https://planka.business/rating_2025" target="_blank" rel="noopener" class="rating-card"><span class="rating-year">2025</span><span class="rating-label">Итоги опубликованы</span></a>
   </div>
   <div class="rating-registration reveal">
     <h3>Участие в рейтинге — 2026</h3>
@@ -771,97 +715,6 @@ window.addEventListener('resize', function() {
   if (window.innerWidth > 768) closeMenu();
 });
 
-// Calculator
-(function() {
-  var companies = [
-    {r22:92817779,r23:102060617,r24:null},
-    {r22:81478000,r23:48360000,r24:44366000},
-    {r22:33221000,r23:41986000,r24:46782720},
-    {r22:29959020,r23:35435313,r24:null},
-    {r22:20262000,r23:24772000,r24:32200000},
-    {r22:18363345,r23:29425000,r24:33404838},
-    {r22:14478730,r23:18626666,r24:16054122},
-    {r22:13104000,r23:17714000,r24:null},
-    {r22:10625000,r23:13070000,r24:19117000},
-    {r22:9923315,r23:18474799,r24:30337359},
-  ];
-  var rKey = {'2022':'r22','2023':'r23','2024':'r24'};
-  var rcYear = '2022';
-
-  function fmt(v) { return new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:0}).format(v); }
-  function getRanked(y) { var k=rKey[y]; return companies.filter(function(c){return c[k]!=null;}).sort(function(a,b){return b[k]-a[k];}); }
-
-  window.rcShowYear = function(y, btn) {
-    rcYear = y;
-    document.querySelectorAll('.rc-tab').forEach(function(t){t.classList.remove('active');});
-    btn.classList.add('active');
-    document.querySelectorAll('.rc-panel').forEach(function(p){p.classList.remove('rc-active');});
-    document.getElementById('rc-panel-'+y).classList.add('rc-active');
-    rcRenderPanel(y);
-  };
-
-  function rcRenderPanel(y) {
-    var raw = document.getElementById('rc-input').value;
-    var userRev = raw ? parseFloat(raw) : null;
-    var k = rKey[y];
-    var ranked = getRanked(y);
-    var max = ranked[0][k];
-    var userPlace = userRev != null ? ranked.filter(function(c){return c[k]>userRev;}).length + 1 : null;
-    var show = userRev != null;
-    var rows = ranked.map(function(c,i) {
-      var p = i+1;
-      var pc = p===1?' p1':p===2?' p2':p===3?' p3':'';
-      var bw = Math.round((c[k]/max)*100);
-      var revClass = show ? 'rc-rev' : 'rc-rev hidden';
-      return '<tr><td style="width:44px"><span class="rc-place'+pc+'">'+p+'</span></td><td><div class="rc-bar-track"><div class="rc-bar-fill" style="width:'+bw+'%"></div></div></td><td class="'+revClass+'">'+fmt(c[k])+'</td></tr>';
-    });
-    if (userRev != null) {
-      var bw = Math.max(Math.round((userRev/max)*100),2);
-      var pc = userPlace===1?' p1':userPlace===2?' p2':userPlace===3?' p3':'';
-      rows.splice(userPlace-1,0,'<tr class="rc-you-row"><td style="width:44px"><span class="rc-place'+pc+'">'+userPlace+'</span></td><td><div class="rc-bar-track"><div class="rc-bar-fill rc-you" style="width:'+bw+'%"></div></div></td><td class="rc-rev">'+fmt(userRev)+'<span class="rc-badge">вы</span></td></tr>');
-    }
-    document.getElementById('rc-panel-'+y).innerHTML = '<table class="rc-table"><tbody>'+rows.join('')+'</tbody></table>';
-  }
-
-  window.rcUpdate = function() {
-    ['2022','2023','2024'].forEach(function(y){ rcRenderPanel(y); });
-    var raw = document.getElementById('rc-input').value;
-    var userRev = raw ? parseFloat(raw) : null;
-    var cards = document.getElementById('rc-cards');
-    var status = document.getElementById('rc-status');
-    if (!userRev) {
-      cards.style.display = 'none';
-      status.textContent = 'Данные других участников скрыты до ввода';
-      status.style.color = 'var(--muted)';
-      return;
-    }
-    status.innerHTML = '✓ Данные открыты — ваше место выделено фиолетовым';
-    status.style.color = 'var(--purple2)';
-    cards.style.display = 'grid';
-    cards.innerHTML = ['2022','2023','2024'].map(function(y) {
-      var k = rKey[y];
-      var ranked = getRanked(y);
-      var above = ranked.filter(function(c){return c[k]>userRev;});
-      var below = ranked.filter(function(c){return c[k]<userRev;});
-      var place = above.length+1;
-      var total = ranked.length+1;
-      var isWin = place===1;
-      var medal = place===1?'🥇':place===2?'🥈':place===3?'🥉':'';
-      var note = isWin?'Лидер рейтинга!':below.length===0?'Последнее место':'Обогнали бы '+below.length+' участников';
-      return '<div class="rc-res-card'+(isWin?' rc-win':'')+'"><div class="rc-res-year">'+y+'</div><div class="rc-res-place'+(isWin?' rc-win':'')+'">'+( medal||place)+'</div><div class="rc-res-sub"> место из '+total+'</div><div class="rc-res-total">из '+total+' участников</div><div class="rc-res-note'+(isWin?' rc-win':'')+'">'+note+'</div></div>';
-    }).join('');
-  };
-
-  window.rcClear = function() {
-    document.getElementById('rc-input').value = '';
-    document.getElementById('rc-cards').style.display = 'none';
-    document.getElementById('rc-status').textContent = 'Данные других участников скрыты до ввода';
-    document.getElementById('rc-status').style.color = 'var(--muted)';
-    ['2022','2023','2024'].forEach(function(y){ rcRenderPanel(y); });
-  };
-
-  ['2022','2023','2024'].forEach(function(y){ rcRenderPanel(y); });
-})();
 </script>
 
 <script>
